@@ -1,9 +1,11 @@
+import os
 from fastapi import FastAPI #,Depends, Body, HTTPException, Path, Query, Request
 from fastapi.responses import HTMLResponse #, JSONResponse
 from pydantic import BaseModel #, Field
 #from typing import Optional, List
 #from jwt_manager import create_token #, validate_token
 from fastapi.security import HTTPBearer
+import uvicorn
 from config.database import engine, Base #Session
 #from models.movie import Movie as MovieModel
 #from fastapi.encoders import jsonable_encoder
@@ -11,6 +13,11 @@ from middlewares.error_handler import ErrorHandler
 #from middlewares.jwt_bearer import JWTBearer
 from routers.movie import movie_router
 from routers.user import user_router
+
+#Deben importar os y uvicorn
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0",
+                port=int(os.environ.get("PORT", 8000)))
 
 app = FastAPI()
 app.title = "Mi aplicación con  FastAPI"
