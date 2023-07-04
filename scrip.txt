@@ -1,0 +1,51 @@
+en git
+virtualenv project1_env
+source ./Scripts/activate
+
+
+# Generate .gitignore file 
+gitignore.io
+# Create virtual environment
+python -m venv venv
+# Activate virtual environment
+source venv/bin/activate
+# Deactivate virtual environment
+deactivate
+# Generate requirements.txt
+pip freeze > requirements.txt
+# Install requirements
+pip install -r requirements.txt
+
+
+python3 -m venv venv
+source venv/bin/activate
+pip install fastapi
+pip install uvicor
+
+
+Crear aplicacion		g
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+# set the action for an endpoint@app.get('')
+def message():
+    return "Hello there!"
+
+
+uvicorn main:app --reload
+
+uvicorn main:app --reload --host 0.0.0.0
+
+Hola a Todos,
+
+Si estan usando WSL como yo y no pueden acceder desde sus celulares, esto se debe porque WSL al configurarse crea un Hyper-V network a la cual no podemos acceder con la IP de nuestro dispositivo por default, para que esto sea posible debemos crear un bridge entre WSL IP y Windows IP, con estos pasos yo pude acceder por mi celular al server:
+
+Primero abrimos CMD en modo admin y corremos este comando:
+wsl hostname -I
+Esto les va arrojar una IP que vamos a usar en el siguiente comando.
+2. Reemplazan el valor de listenport y connectport con el numero de puerto configurado en la app. Reemplazamos tambien connectaddress con la IP que les arroja el primer comando:
+
+netsh interface portproxy add v4tov4 listenport=PUERTO_AQUI listenaddress=0.0.0.0 connectport=PUERTO_AQUI connectaddress=IP_AQUI
+Si todo sale bien, podran usar la IP de su pc y puerto elegido para acceder al server desde el celular.
